@@ -2376,7 +2376,8 @@ calc_opacity(session_t *ps, win *w) {
     }
 
     // Respect inactive_opacity in some cases
-    if (ps->o.inactive_opacity && false == w->focused
+    if (ps->o.inactive_opacity && !win_is_focused_real(ps, w)
+        && !win_match(ps, w, ps->o.focus_blacklist, &w->cache_fcblst)
         && (OPAQUE == opacity || ps->o.inactive_opacity_override)) {
       opacity = ps->o.inactive_opacity;
     }
@@ -5040,7 +5041,7 @@ parse_matrix(session_t *ps, const char *src, const char **endptr) {
   int wid = 0, hei = 0;
   const char *pc = NULL;
   XFixed *matrix = NULL;
-  
+
   // Get matrix width and height
   {
     double val = 0.0;
