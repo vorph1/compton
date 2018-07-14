@@ -463,11 +463,11 @@ glx_init_blur(session_t *ps) {
         ppass->frag_shader = glx_create_shader(GL_FRAGMENT_SHADER, FRAG_SHADER_BLUR_PREFIX);
         ppass->upscale_shader = glx_create_shader(GL_FRAGMENT_SHADER, FRAG_SHADER_BLUR_UPSCALE);
 
-        //{
-        //    FILE* fd = fopen("shader.glsl", "w");
-        //    fprintf(fd, "%s\n", FRAG_SHADER_BLUR_PREFIX);
-        //    fflush(fd);
-        //}
+        {
+            FILE* fd = fopen("shader.glsl", "w");
+            fprintf(fd, "%s\n", FRAG_SHADER_BLUR_PREFIX);
+            fflush(fd);
+        }
       }
 
       if (!ppass->frag_shader) {
